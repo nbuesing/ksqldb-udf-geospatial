@@ -1,0 +1,40 @@
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+}
+
+apply plugin: "com.github.johnrengelman.shadow"
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven {
+        url "https://packages.confluent.io/maven/"
+    }
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+version = "1.0.0"
+
+compileJava {
+    options.compilerArgs << "-parameters"
+}
+
+dependencies {
+
+    // do not need or want these in the uber jar, so they are 'compileOnly'.
+    compileOnly group: 'org.apache.kafka', name: 'connect-api', version: kafka_version
+    compileOnly group: 'io.confluent.ksql', name: 'ksqldb-udf', version: confluent_io_version
+
+    compile group: 'com.univocity', name: 'univocity-parsers', version: univocity_parsers_version
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombok_version
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombok_version
+
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: lombok_version
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombok_version
+}
+
+tasks.build.dependsOn tasks.shadowJar
