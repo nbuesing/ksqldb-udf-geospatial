@@ -1,0 +1,10 @@
+
+rootProject.name = 'ksqldb-udf-geospatial'
+
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+	}
+}

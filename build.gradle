@@ -28,7 +28,7 @@ dependencies {
     compileOnly group: 'org.apache.kafka', name: 'connect-api', version: kafka_version
     compileOnly group: 'io.confluent.ksql', name: 'ksqldb-udf', version: confluent_io_version
 
-    compile group: 'com.univocity', name: 'univocity-parsers', version: univocity_parsers_version
+    implementation group: 'com.univocity', name: 'univocity-parsers', version: univocity_parsers_version
 
     compileOnly group: 'org.projectlombok', name: 'lombok', version: lombok_version
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombok_version
